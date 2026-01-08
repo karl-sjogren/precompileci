@@ -103,6 +103,9 @@ jobs:
     - name: Unzip nuget cache
       run: tar -xvp -f nuget-packages-cache.tar
 
+    - name: Restore NuGet packages
+      run: dotnet restore --verbosity minimal
+
     - name: Run .NET tests
       run: dotnet test --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-build --configuration Release --no-progress
 
