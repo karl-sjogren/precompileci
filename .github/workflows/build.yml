@@ -53,14 +53,11 @@ jobs:
     - name: Build .NET solution
       run: dotnet build --configuration Release --no-restore
 
-    - name: Run .NET tests
-      run: dotnet test --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-build --configuration Release --no-progress
-
     - name: Archive test artifacts
       run: git ls-files ./test/ --others  | grep -v -e runtimes/win -e runtimes/maccatalyst -e runtimes/osx -e runtimes/linux-musl -e runtimes/linux-mips64 -e runtimes/linux-ppc64le -e runtimes/runtimes/linux-s390x -e runtimes/browser-wasm -e EmptyFiles -e /BuildHost- | tar -cf test-compile-artifacts.tar -T -
 
     - name: Archive nuget cache
-      run: tar -cf nuget-packages-cache.tar -C ${{ env.NUGET_PACKAGES }}
+      run: tar -cf nuget-packages-cache.tar ${{ env.NUGET_PACKAGES }}
 
     - name: Upload test artifacts
       uses: actions/upload-artifact@v6
