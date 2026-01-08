@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/precompileci.Benchmarks/precompileci.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/precompileci.Core/precompileci.Core.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/precompileci.Core.Tests/precompileci.Core.Tests.csproj" />
+    <Project Path="test/precompileci.TestHelpers/precompileci.TestHelpers.csproj" />
+  </Folder>
+</Solution>
