@@ -101,7 +101,7 @@ jobs:
         name: nuget-packages-cache
 
     - name: Unzip nuget cache
-      run: tar -xvp -f nuget-packages-cache.tar -C ${{ env.NUGET_PACKAGES }}
+      run: tar -xvp -f nuget-packages-cache.tar
 
     - name: Run .NET tests
       run: dotnet test --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-build --configuration Release --no-progress
