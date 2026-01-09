@@ -83,10 +83,10 @@ jobs:
         name: test-compile-artifacts
 
     - name: Unzip compile artifacts
-      run: tar -xvp -f test-compile-artifacts.tar
+      run: tar -xp -f test-compile-artifacts.tar
 
     - name: Run .NET tests
-      run: find ./test -type f -executable -regex '.*Tests$' -exec {} \;
+      run: find ./test -type f -executable -regex '.*Tests$' -exec {} --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-progress \;
 
     - name: Upload test results
       uses: actions/upload-artifact@v6
