@@ -86,7 +86,7 @@ jobs:
       run: tar -xp -f test-compile-artifacts.tar
 
     - name: Run .NET tests
-      run: find ./test -type f -executable -regex '.*Tests$' -print0 | parallel -0 {} --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-progress \;
+      run: find ./test -type f -executable -regex '.*Tests$' -print0 | parallel -0 {} --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-progress
 
     - name: Upload test results
       uses: actions/upload-artifact@v6
