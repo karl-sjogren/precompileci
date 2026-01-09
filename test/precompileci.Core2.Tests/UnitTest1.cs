@@ -1,6 +1,6 @@
-namespace precompileci.Core.Tests;
+namespace precompileci.Core2.Tests;
 
-public class UnitTest1 {
+public class UnitTest2 {
     [Fact]
     public async Task TestAsync() {
         await Task.Delay(0, TestCancellationToken);
