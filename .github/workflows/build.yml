@@ -86,7 +86,7 @@ jobs:
       run: tar -xvp -f test-compile-artifacts.tar
 
     - name: Run .NET tests
-      run: find ./test -type f -executable -regex '.*Tests$' -print
+      run: find ./test -type f -executable -regex '.*Tests$' -exec echo {} \;
 
     - name: Upload test results
       uses: actions/upload-artifact@v6
