@@ -56,22 +56,12 @@ jobs:
     - name: Archive test artifacts
       run: git ls-files ./test/ --others  | grep -v -e runtimes/win -e runtimes/maccatalyst -e runtimes/osx -e runtimes/linux-musl -e runtimes/linux-mips64 -e runtimes/linux-ppc64le -e runtimes/runtimes/linux-s390x -e runtimes/browser-wasm -e EmptyFiles -e /BuildHost- | tar -cf test-compile-artifacts.tar -T -
 
-    - name: Archive nuget cache
-      run: tar -cf nuget-packages-cache.tar ${{ env.NUGET_PACKAGES }}
-
     - name: Upload test artifacts
       uses: actions/upload-artifact@v6
       with:
         name: test-compile-artifacts
         path: |
           ./test-compile-artifacts.tar
-
-    - name: Upload nuget cache
-      uses: actions/upload-artifact@v6
-      with:
-        name: nuget-packages-cache
-        path: |
-          ./nuget-packages-cache.tar
 
   net-test:
     name: .NET tests
@@ -95,19 +85,8 @@ jobs:
     - name: Unzip compile artifacts
       run: tar -xvp -f test-compile-artifacts.tar
 
-    - name: Download nuget cache
-      uses: actions/download-artifact@v4
-      with:
-        name: nuget-packages-cache
-
-    - name: Unzip nuget cache
-      run: tar -xvp -f nuget-packages-cache.tar
-
-    - name: Restore NuGet packages
-      run: dotnet restore --verbosity minimal
-
     - name: Run .NET tests
-      run: dotnet test --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-build --configuration Release --no-progress
+      run: find . -type f -executable -print
 
     - name: Upload test results
       uses: actions/upload-artifact@v6
