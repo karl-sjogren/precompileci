@@ -57,7 +57,7 @@ jobs:
       run: git ls-files ./test/ --others  | grep -v -e runtimes/win -e runtimes/maccatalyst -e runtimes/osx -e runtimes/linux-musl -e runtimes/linux-mips64 -e runtimes/linux-ppc64le -e runtimes/runtimes/linux-s390x -e runtimes/browser-wasm -e EmptyFiles -e /BuildHost- | tar -cf test-compile-artifacts.tar -T -
 
     - name: Upload test artifacts
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: test-compile-artifacts
         path: |
@@ -89,7 +89,7 @@ jobs:
       run: find ./test -type f -executable -regex '.*Tests$' -print0 | parallel -0 {} --coverage --coverage-output-format cobertura --coverage-settings ./test/coverage.config --report-trx --no-progress
 
     - name: Upload test results
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: net-test-results
         path: |
